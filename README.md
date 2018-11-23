@@ -4,7 +4,6 @@
 
 - [Description](#description)
 - [Instructions](#instructions)
-- [Contributing](#contributing)
 
 ## Description
 
@@ -13,8 +12,19 @@ This is an arcade game devised after the classic game Frogger. The player, which
 ## Instructions
 
 To extract the game onto your local computer and play the game, follow the instructions below:
-### Download game from Github
+#### Download game from Github
+Download the ZIP folder from https://github.com/lindamxu/fend-classic-arcade-game
 
-## Contributing
+Or type the following Git command in your terminal once you're in a folder you've designated for the project:
+```
+git clone https://github.com/lindamxu/fend-classic-arcade-game.git
+```
+#### Initialize game
+Open your browser, navigate to File >> Open File >> [navigate to the folder containing the game you've just downloaded] >> index.html
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+### Gameplay
+
+1. Your player begins at the bottom of the screen
+2. Use the up, down, left, and right arrow keys on your keyboard to move your player up towards the water
+3. Avoid any of the "enemy" bugs that are traveling with varying speeds on the pavement. If your player collides with one of them, the player starts over from the bottom of the screen
+4. Once you have reached the water, the game is won and you have the option to play again.
