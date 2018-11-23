@@ -2,18 +2,18 @@
 
 ## Table of Contents
 
+- [Description](#description)
 - [Instructions](#instructions)
 - [Contributing](#contributing)
 
+## Description
+
+This is an arcade game devised after the classic game Frogger. The player, which starts at the bottom of the screen, must make its way up to the water without running into any "enemy" bugs, which move at varying speeds. The player can move up, down, left, and right but not off screen. If the player collides into an enemy bug, the player must start over from the bottom again. When the player reaches the water, the game is won and the user has a choice to play again if he or she wishes.
+
 ## Instructions
 
-Use this [rubric](https://review.udacity.com/#!/rubrics/2013/view) for self-checking your submission.
-
-Make sure the functions you write are **object-oriented** - either class functions (like `Player` and `Enemy`) or class prototype functions such as `Enemy.prototype.checkCollisions`. Also make sure that the keyword `this` is used appropriately within your class and class prototype functions to refer to the object the function is called upon.
-
-Your **README.md** file should be updated with instructions on both how to 1. Run and 2. Play your arcade game.
-
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+To extract the game onto your local computer and play the game, follow the instructions below:
+### Download game from Github
 
 ## Contributing
 

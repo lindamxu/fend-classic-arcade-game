@@ -1,5 +1,13 @@
+//Global variables
+let modalElement = document.querySelector('#modal');
+let modalRepeatBtn = document.querySelector('.modal_repeat');
+
+
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(x, y, speed) {
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -14,6 +22,24 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+
+    //if the enemy goes off screen, it returns on the left side
+    if (this.x > 505) {
+      //the position begins off screen for a natural re-emergence
+      this.x = -101;
+    }
+    else {
+      this.x += this.speed*dt;
+    }
+
+    //checks for collisons
+    if ((this.x > player.x - 65 && this.x < player.x + 65) && (this.y > player.y - 65 && this.y < player.y + 65)) {
+
+      //resets to original position for the player after a collision
+      player.x = 202;
+      player.y = 390;
+
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -25,11 +51,94 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
+var Player = function(x, y, speed) {
+  this.x = x;
+  this.y = y;
+  this.speed = speed;
+  this.sprite = 'images/char-boy.png';
+
+
+};
+
+Player.prototype.update = function () {
+  //if the player reaches the water, a modal appears to let the user know the game is won
+  if (this.y < 0) {
+    openModal();
+    }
+  }
+
+//function that renders the player
+Player.prototype.render = function () {
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+}
+//function that handles key inputs to move the player around the screen
+Player.prototype.handleInput = function (keyPress) {
+  switch(keyPress) {
+    case 'left':
+      if (this.x > 0) {
+        this.x = this.x - 101;
+      }
+    break;
+    case 'up':
+      if (this.y > 0) {
+        this.y = this.y - 83;
+      }
+    break;
+    case 'right':
+      if (this.x < 404) {
+        this.x = this.x + 101;
+      }
+    break;
+    case 'down':
+      if (this.y < 390) {
+        this.y = this.y + 83;
+      }
+    break;
+  }
+
+};
+
+//Functions to control modal
+
+//opens the modal when the game is won
+function openModal() {
+  modalElement.style.display = 'block';
+}
+
+//closes the modal when the game is restarted
+function closeModal() {
+  modalElement.style.display = 'none';
+}
+
+//function that resets the player's position to restart the game
+function playAgain() {
+  player.x = 202;
+  player.y = 390;
+
+}
+
+//event listener for the button to be clicked for replaying
+modalRepeatBtn.addEventListener('click', function () {
+  closeModal();
+  playAgain();
+});
+
+
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-
+var player = new Player(202, 390, 400);
+var allEnemies = [];
+//starting y positions for the enemy
+var enemyYPosition = [55, 140, 220];
+var enemy;
+//creates an new Enemy instance for each y-position and adds it to the allEnemies array
+enemyYPosition.forEach(function(yCoord){
+  enemy = new Enemy(0, yCoord, 100 + Math.floor(Math.random()*200));
+  allEnemies.push(enemy);
+});
 
 
 // This listens for key presses and sends the keys to your
